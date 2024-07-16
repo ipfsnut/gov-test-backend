@@ -10,8 +10,9 @@ require('dotenv').config();
 const app = express();
 
 // Enable CORS for all routes
-app.use(cors());
-
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 // Parse JSON bodies
 app.use(express.json());
 
