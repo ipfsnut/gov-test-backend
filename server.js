@@ -168,6 +168,17 @@ app.get('/api/dao/config', async (req, res) => {
   }
 });
 
+// New endpoint for DAO DAO core contract proposal modules
+app.get('/api/dao/proposal-modules', async (req, res) => {
+  try {
+    const result = await client.queryContractSmart(PAGE_DAO_CONTRACT, { list_proposal_modules: {} });
+    res.json(result.proposal_modules);
+  } catch (error) {
+    console.error('Error fetching proposal modules:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // New endpoint for DAO DAO core contract voting module
 app.get('/api/dao/voting-module', async (req, res) => {
   try {
@@ -379,7 +390,7 @@ app.get('/api/total_power_at_height', async (req, res) => {
     });
     res.json(result);
   }
-  catch (error) {
+catch (error) {
     console.error('Error fetching total power at height:', error);
     res.status(500).json({ error: error.message });
   }
